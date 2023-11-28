@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { Context } from "../../provider/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
+  const navigate = useNavigate();
+  const { setControll } = useContext(Context);
+
   const handleAddUser = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -27,6 +32,8 @@ const AddUser = () => {
             icon: "success",
             confirmButtonText: "Cool",
           });
+          navigate(`/`);
+          setControll((prevControl) => !prevControl);
         }
       });
   };
